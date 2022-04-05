@@ -26,12 +26,13 @@ public class SuperHeroesController {
 		this.superHeroeService = superHeroeService;
 	}
 	
-	
+	//Consultar todos los SH
 	@GetMapping(value = "/superHeroes",produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<SuperHeroe> listadoSuperHeroes(){
 		return superHeroeService.listarSuperHeroe();
 	}
 	
+	//Consultar un unico SH por id
 	@GetMapping(value = "/superHeroes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<SuperHeroe> obtenerSuperHeroe(@PathVariable(name="id") Integer id){
 		SuperHeroe superHeroe = superHeroeService.buscarSuperHeroe(id);
@@ -41,23 +42,43 @@ public class SuperHeroesController {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(superHeroe);
 	}
 	
+	//TODO
+	//Consultar los SH por estado
+	@GetMapping(value = "/superHeroes/{estado}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<SuperHeroe>> obtenerSuperHeroePorEstado(@PathVariable(name="estado") String estado){
+		List<SuperHeroe> superHeroe = superHeroeService.buscarSuperHeroePorEstado(estado);
+		if(superHeroe != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(superHeroe);
+		}
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(superHeroe);
+	}
+	
+	//Crear un SH
 	@PostMapping(value = "/superHeroes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public SuperHeroe crearSuperHeroe(@RequestBody SuperHeroe superHeroe) {
 		superHeroeService.guardarSuperHeroe(superHeroe);
 		return superHeroe;
 	}
 
+	//Modificar un SH
 	@PutMapping(value = "/superHeroes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void modificarSuperHeroe(@PathVariable(name = "id") Integer id, @RequestBody SuperHeroe superHeroe) {
+	public SuperHeroe modificarSuperHeroe(@PathVariable(name = "id") Integer id, @RequestBody SuperHeroe superHeroe) {
 		superHeroe.setId(id);
 		superHeroeService.guardarSuperHeroe(superHeroe);
+		return superHeroe;
 	}
 	
+	//Eliminar un SH
 	@DeleteMapping(value = "/superHeroes/{id}")
 	@ResponseStatus(code=HttpStatus.NO_CONTENT)
 	public void eliminarSuperHeroe(@PathVariable(name="id") Integer id) {
 		superHeroeService.eliminarSuperHeroe(id);
 	}
+	
+	
+	
+	
 	
 	
 

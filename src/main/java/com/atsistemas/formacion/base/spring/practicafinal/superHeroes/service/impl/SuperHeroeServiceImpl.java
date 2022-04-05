@@ -22,8 +22,7 @@ public class SuperHeroeServiceImpl implements SuperHeroesService{
 		superHeroes = new HashMap<>();
 		superHeroes.put(siguienteIdSuperHeroe(), new SuperHeroe(siguienteIdSuperHeroe(),"Superman","vivo"));
 		superHeroes.put(siguienteIdSuperHeroe(), new SuperHeroe(siguienteIdSuperHeroe(),"batman","muerto"));
-		superHeroes.put(siguienteIdSuperHeroe(), new SuperHeroe(siguienteIdSuperHeroe(),"hulk","vivo"));
-		
+		superHeroes.put(siguienteIdSuperHeroe(), new SuperHeroe(siguienteIdSuperHeroe(),"hulk","vivo"));	
 		
 	}
 	
@@ -60,6 +59,12 @@ public class SuperHeroeServiceImpl implements SuperHeroesService{
 	public void eliminarSuperHeroe(Integer idSuperHeroe) {
 		superHeroes.remove(idSuperHeroe);
 		
+	}
+
+	// TODO 
+	@Override
+	public List<SuperHeroe> buscarSuperHeroePorEstado(String estado) {
+		return null;
 	}
 
 }

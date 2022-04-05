@@ -6,12 +6,14 @@ import com.atsistemas.formacion.base.spring.practicafinal.superHeroes.model.Supe
 
 public interface SuperHeroesService {
 	
-void guardarSuperHeroe(SuperHeroe superHeroe);
+	void guardarSuperHeroe(SuperHeroe superHeroe);
 	
 	List<SuperHeroe> listarSuperHeroe();
 	
 	SuperHeroe buscarSuperHeroe(Integer id);
 	
 	void eliminarSuperHeroe(Integer idSuperHeroe);
+	
+	List<SuperHeroe> buscarSuperHeroePorEstado(String estado);
 
 }
