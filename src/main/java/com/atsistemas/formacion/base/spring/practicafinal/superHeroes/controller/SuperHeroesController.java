@@ -44,14 +44,14 @@ public class SuperHeroesController {
 	
 	//TODO
 	//Consultar los SH por estado
-	@GetMapping(value = "/superHeroes/{estado}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<SuperHeroe>> obtenerSuperHeroePorEstado(@PathVariable(name="estado") String estado){
-		List<SuperHeroe> superHeroe = superHeroeService.buscarSuperHeroePorEstado(estado);
-		if(superHeroe != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(superHeroe);
-		}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(superHeroe);
-	}
+//	@GetMapping(value = "/superHeroes/{estado}", produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<List<SuperHeroe>> obtenerSuperHeroePorEstado(@PathVariable(name="estado") String estado){
+//		List<SuperHeroe> superHeroe = superHeroeService.buscarSuperHeroePorEstado(estado);
+//		if(superHeroe != null) {
+//			return ResponseEntity.status(HttpStatus.OK).body(superHeroe);
+//		}
+//		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(superHeroe);
+//	}
 	
 	//Crear un SH
 	@PostMapping(value = "/superHeroes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -74,6 +74,12 @@ public class SuperHeroesController {
 	@ResponseStatus(code=HttpStatus.NO_CONTENT)
 	public void eliminarSuperHeroe(@PathVariable(name="id") Integer id) {
 		superHeroeService.eliminarSuperHeroe(id);
+	}
+	
+	//Consultar SH por su estado
+	@GetMapping ( value = "/superHeroes/estados/{estado}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<SuperHeroe> obtenerSuperHeroesEstado(@PathVariable(value = "estado") String estado){
+		return superHeroeService.buscarSuperHeroeEstado(estado);
 	}
 	
 	

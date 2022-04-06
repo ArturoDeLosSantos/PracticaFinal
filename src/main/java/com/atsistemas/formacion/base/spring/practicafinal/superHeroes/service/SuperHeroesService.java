@@ -14,6 +14,6 @@ public interface SuperHeroesService {
 	
 	void eliminarSuperHeroe(Integer idSuperHeroe);
 	
-	List<SuperHeroe> buscarSuperHeroePorEstado(String estado);
+	List<SuperHeroe> buscarSuperHeroeEstado(String estado);
 
 }
