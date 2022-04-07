@@ -4,9 +4,14 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
+import com.atsistemas.formacion.base.spring.practicafinal.superHeroes.model.FiltrosSuperHeroe;
 import com.atsistemas.formacion.base.spring.practicafinal.superHeroes.model.SuperHeroe;
 import com.atsistemas.formacion.base.spring.practicafinal.superHeroes.repository.SuperHeroeRepository;
 
@@ -51,6 +56,27 @@ public class JpaSuperHeroeRepository implements SuperHeroeRepository{
 	public List<SuperHeroe> findByEstado(String estado) {
 		return em.createQuery("FROM SuperHeroe s WHERE S.estado = :estado",SuperHeroe.class)
 				.setParameter("estado", estado).getResultList();
+	}
+
+	@Override
+	public List<SuperHeroe> search(FiltrosSuperHeroe filtrosSuperHeroe) {
+		
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<SuperHeroe> query = criteriaBuilder.createQuery(SuperHeroe.class);
+		Root<SuperHeroe> root = query.from(SuperHeroe.class);
+		Predicate predicate = criteriaBuilder.conjunction();
+		
+		if(filtrosSuperHeroe.getNombre() != null) {
+			predicate = criteriaBuilder.and(predicate,criteriaBuilder.equal(root.get("nombre"),filtrosSuperHeroe.getNombre()));
+		}
+		
+		if(filtrosSuperHeroe.getEstado() != null) {
+			predicate = criteriaBuilder.and(predicate,criteriaBuilder.equal(root.get("estado"),filtrosSuperHeroe.getEstado()));
+		}
+		
+		query.where(predicate);
+
+		return em.createQuery(query).getResultList();
 	}
 
 }

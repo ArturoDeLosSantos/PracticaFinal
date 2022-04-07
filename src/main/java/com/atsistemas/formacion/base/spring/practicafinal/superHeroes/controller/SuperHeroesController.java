@@ -2,6 +2,7 @@ package com.atsistemas.formacion.base.spring.practicafinal.superHeroes.controlle
 
 import java.util.List;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.atsistemas.formacion.base.spring.practicafinal.superHeroes.model.FiltrosSuperHeroe;
 import com.atsistemas.formacion.base.spring.practicafinal.superHeroes.model.SuperHeroe;
 import com.atsistemas.formacion.base.spring.practicafinal.superHeroes.service.SuperHeroesService;
 
@@ -41,17 +43,6 @@ public class SuperHeroesController {
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(superHeroe);
 	}
-	
-	//TODO
-	//Consultar los SH por estado
-//	@GetMapping(value = "/superHeroes/{estado}", produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<List<SuperHeroe>> obtenerSuperHeroePorEstado(@PathVariable(name="estado") String estado){
-//		List<SuperHeroe> superHeroe = superHeroeService.buscarSuperHeroePorEstado(estado);
-//		if(superHeroe != null) {
-//			return ResponseEntity.status(HttpStatus.OK).body(superHeroe);
-//		}
-//		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(superHeroe);
-//	}
 	
 	//Crear un SH
 	@PostMapping(value = "/superHeroes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -82,6 +73,10 @@ public class SuperHeroesController {
 		return superHeroeService.buscarSuperHeroeEstado(estado);
 	}
 	
+	@GetMapping(value = "/superHeroes/search", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<SuperHeroe> buscarSuperHeroes(FiltrosSuperHeroe filtrosSuperHeroe) {
+		return superHeroeService.buscarSuperHeroes(filtrosSuperHeroe);
+	}
 	
 	
 	

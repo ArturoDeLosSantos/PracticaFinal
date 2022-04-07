@@ -2,6 +2,7 @@ package com.atsistemas.formacion.base.spring.practicafinal.superHeroes.repositor
 
 import java.util.List;
 
+import com.atsistemas.formacion.base.spring.practicafinal.superHeroes.model.FiltrosSuperHeroe;
 import com.atsistemas.formacion.base.spring.practicafinal.superHeroes.model.SuperHeroe;
 
 public interface SuperHeroeRepository {
@@ -17,6 +18,8 @@ public interface SuperHeroeRepository {
 	void delete(Integer idSuperHeroe);
 	
 	List<SuperHeroe> findByEstado(String estado);
+	
+	List<SuperHeroe> search (FiltrosSuperHeroe filtrosSuperHeroe);
 	
 	
 	
