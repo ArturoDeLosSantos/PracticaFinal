@@ -54,7 +54,7 @@ public class JpaSuperHeroeRepository implements SuperHeroeRepository{
 
 	@Override
 	public List<SuperHeroe> findByEstado(String estado) {
-		return em.createQuery("FROM SuperHeroe s WHERE S.estado = :estado",SuperHeroe.class)
+		return em.createQuery("FROM SuperHeroe s WHERE s.estado = :estado",SuperHeroe.class)
 				.setParameter("estado", estado).getResultList();
 	}
 
