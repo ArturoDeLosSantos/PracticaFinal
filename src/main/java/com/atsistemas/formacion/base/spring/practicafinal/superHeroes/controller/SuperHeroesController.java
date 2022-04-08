@@ -81,6 +81,13 @@ public class SuperHeroesController {
 	
 	//TODO
 	// HACER MAS MÉTODOS DE CONSULTAS CON CRITERIABUILDER
+	//Colsultar SH por filtros
+	@GetMapping(value = "/superHeroes/searchName", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<SuperHeroe> buscarNombreSuperHeroes(FiltrosSuperHeroe filtrosSuperHeroe) {
+		return superHeroeService.buscarSuperHeroesCadena(filtrosSuperHeroe);
+	}
+	
+	
 	
 	
 	

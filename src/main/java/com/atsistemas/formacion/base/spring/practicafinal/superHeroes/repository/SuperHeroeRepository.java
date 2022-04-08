@@ -21,6 +21,9 @@ public interface SuperHeroeRepository {
 	
 	List<SuperHeroe> search (FiltrosSuperHeroe filtrosSuperHeroe);
 	
+	//TODO
+	List<SuperHeroe> searchCadena (FiltrosSuperHeroe filtrosSuperHeroe);
+	
 	
 	
 

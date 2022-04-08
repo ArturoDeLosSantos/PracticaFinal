@@ -78,5 +78,27 @@ public class JpaSuperHeroeRepository implements SuperHeroeRepository{
 
 		return em.createQuery(query).getResultList();
 	}
+	
+	//TODO
+	//@Override
+	public List<SuperHeroe> searchCadena(FiltrosSuperHeroe filtrosSuperHeroe) {
+		
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<SuperHeroe> query = criteriaBuilder.createQuery(SuperHeroe.class);
+		Root<SuperHeroe> root = query.from(SuperHeroe.class);
+		Predicate predicate = criteriaBuilder.conjunction();
+		
+		if(filtrosSuperHeroe.getNombre() != null) {
+			predicate = criteriaBuilder.and(predicate,criteriaBuilder.like(root.get("nombre"),"%"+filtrosSuperHeroe.getNombre()+"%"));
+		}
+		
+		if(filtrosSuperHeroe.getEstado() != null) {
+			predicate = criteriaBuilder.and(predicate,criteriaBuilder.equal(root.get("estado"),filtrosSuperHeroe.getEstado()));
+		}
+		
+		query.where(predicate);
+
+		return em.createQuery(query).getResultList();
+	}
 
 }

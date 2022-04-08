@@ -18,5 +18,8 @@ public interface SuperHeroesService {
 	List<SuperHeroe> buscarSuperHeroeEstado(String estado);
 	
 	List<SuperHeroe> buscarSuperHeroes(FiltrosSuperHeroe filtrosSuperHeroe);
+	
+	//TODO
+	List<SuperHeroe> buscarSuperHeroesCadena(FiltrosSuperHeroe filtrosSuperHeroe);
 
 }
