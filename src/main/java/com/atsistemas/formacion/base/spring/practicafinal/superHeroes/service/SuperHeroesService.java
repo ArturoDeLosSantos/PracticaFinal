@@ -22,4 +22,5 @@ public interface SuperHeroesService {
 	//TODO
 	List<SuperHeroe> buscarSuperHeroesCadena(FiltrosSuperHeroe filtrosSuperHeroe);
 
+
 }

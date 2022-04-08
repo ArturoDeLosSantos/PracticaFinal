@@ -101,4 +101,6 @@ public class JpaSuperHeroeRepository implements SuperHeroeRepository{
 		return em.createQuery(query).getResultList();
 	}
 
+	
+
 }

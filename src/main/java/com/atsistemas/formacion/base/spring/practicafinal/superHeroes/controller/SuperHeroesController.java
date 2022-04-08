@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -80,15 +82,11 @@ public class SuperHeroesController {
 	}
 	
 	//TODO
-	// HACER MAS MÉTODOS DE CONSULTAS CON CRITERIABUILDER
-	//Colsultar SH por filtros
+	//Consultar todos los súper héroes que contienen, en su nombre, el valor de un parámetro enviado en la petición
 	@GetMapping(value = "/superHeroes/searchName", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<SuperHeroe> buscarNombreSuperHeroes(FiltrosSuperHeroe filtrosSuperHeroe) {
 		return superHeroeService.buscarSuperHeroesCadena(filtrosSuperHeroe);
 	}
-	
-	
-	
 	
 	
 	

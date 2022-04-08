@@ -78,4 +78,7 @@ public class SuperHeroeServiceImpl implements SuperHeroesService{
 	public List<SuperHeroe> buscarSuperHeroesCadena(FiltrosSuperHeroe filtrosSuperHeroe) {
 		return superHeroeRepository.searchCadena(filtrosSuperHeroe);
 	}
+
+
+
 }
